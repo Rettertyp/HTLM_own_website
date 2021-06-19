@@ -1,0 +1,49 @@
+/* define the element wrapper, has to begin with # because wrapper has its own ID */
+#wrapper {
+
+    /* the width of the wrapper element */
+    width: 960px;
+
+    /* the left and right margin of the wrapper element */
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+/* define attributes of the header element */
+header {
+
+    /* offset around the elements of the header */
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+/* define attributes of the main section */
+section {
+
+    width: 650px;
+    height: 550px;
+    float: left;
+    background: green;
+
+}
+
+/* define attributes of the sidebar */
+aside {
+
+    width: 310px;
+    height: 550px;
+    float: right;
+    background: red;
+
+}
+
+/* define attributes of the footer element */
+footer {
+
+    height: 50px;
+    clear: both;
+    background: orange;
+
+}
