@@ -142,3 +142,7 @@ footer {
 #contact h1 {
     padding-bottom: 10px;
 }
+
+#gameScreen {
+    border: 1px solid black;
+}

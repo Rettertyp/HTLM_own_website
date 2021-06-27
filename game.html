@@ -9,7 +9,7 @@
 
         <!-- the title of the website -->
         <title>
-            Rettertyp | CONTACT
+            Rettertyp | GAME
         </title>
 
         <!-- with this option, we could theoretically use Umlaute such as ä, ü and so on -->
@@ -41,43 +41,6 @@
 
             </nav>
 
-
-            <!-- the main section of the body -->
-            <section>
-                
-                <div id="contact">
-                    
-                    <h1>Contact</h1>
-                    <a>Name:</a>
-                    <P>Nettertyp</P>
-                    <a>Telefonnummer:</a>
-                    <p>0123/45678901</p>
-
-                </div>
-
-            </section>
-
-            <!-- the side bar of the body -->
-            <aside>
-
-                <div class="sidebar">
-                    <a href="#">Das ist die Sidebar</a>
-                    <img src="Pictures/Sidebar.png" alt="Sidebar">
-                    <p>
-                        Warnung: Dieser Text ist - wie mein Professor Rossmanith sagen würde - "Schmutz".
-                    </p>
-                </div>
-
-                <div class="sidebar">
-                    <a href="#">Das ist die Sidebar</a>
-                    <img src="Pictures/Sidebar.png" alt="Sidebar">
-                    <p>
-                        Warnung: Dieser Text ist - wie mein Professor Rossmanith sagen würde - "Schmutz".
-                    </p>
-                </div>
-            
-            </aside>
-
             <!-- the footer of the body -->
             <footer>
                 
@@ -85,6 +48,16 @@
             </footer>
 
         </div>
+
+        <!-- loading the image into html, it has the ID img_ball which we an use in JS -->
+        <img id="img_ball" src="assets/images/ball.png" />
+        <img id="img_brick" src="assets/images/brick.png" />
+
+        <!-- creating a canvas (screen on which we can draw) -->
+        <canvas id="gameScreen" width="800" height="600"></canvas>
+
+        <script src="src/index.js" type="module"></script>
+
     </body>
 
 
