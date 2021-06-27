@@ -1,5 +1,5 @@
 // import the classes used from the specified locations
-import Game from '/src/game';
+import Game from "/src/game.js";
 
 // initialization of the game
 

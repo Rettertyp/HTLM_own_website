@@ -1,5 +1,3 @@
-import Game from "./game";
-import Paddle from "./paddle";
 
 export default class InputHandler {
   constructor(game) {

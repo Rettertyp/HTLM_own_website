@@ -2,7 +2,7 @@
 import {
     detectVerticalCollision,
     detectHorizontalCollision
-  } from "/src/collisionDetection";
+  } from "/src/collisionDetection.js";
   
   export default class Ball {
     constructor(game) {
