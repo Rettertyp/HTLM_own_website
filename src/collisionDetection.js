@@ -39,15 +39,19 @@ export function detectVerticalCollision(ball, gameObject) {
     let leftSideOfObject = gameObject.position.x;
     let rightSideOfObject = gameObject.position.x + gameObject.width;
   
-    if (
-      rightSideOfBall >= leftSideOfObject &&
+    // if (
+    //   rightSideOfBall >= leftSideOfObject &&
+    //   leftSideOfBall <= rightSideOfObject &&
+    //   bottomOfBall <= bottomOfObject &&
+    //   topOfBall >= topOfObject
+    // ) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return (rightSideOfBall >= leftSideOfObject &&
       leftSideOfBall <= rightSideOfObject &&
       bottomOfBall <= bottomOfObject &&
-      topOfBall >= topOfObject
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+      topOfBall >= topOfObject)
   }
   

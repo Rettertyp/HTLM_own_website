@@ -83,10 +83,13 @@ export default class Game {
 
   // pausing / unpausing the game
   togglePause() {
-    if (this.gamestate === GAMESTATE.PAUSED) {
-      this.gamestate = GAMESTATE.RUNNING;
-    } else {
-      this.gamestate = GAMESTATE.PAUSED;
-    }
+    // if (this.gamestate === GAMESTATE.PAUSED) {
+    //   this.gamestate = GAMESTATE.RUNNING;
+    // } else {
+    //   this.gamestate = GAMESTATE.PAUSED;
+    // }
+
+    //Ternary operator
+    this.gamestate === GAMESTATE.PAUSED ? this.gamestate = GAMESTATE.RUNNING : this.gamestate = GAMESTATE.PAUSED
   }
 }
