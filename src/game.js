@@ -1,11 +1,11 @@
 // import the classes used from the specified locations
-import Paddle from "/src/paddle.js";
-import InputHandler from "/src/input.js";
-import Ball from "/src/ball.js";
-import Brick from "/src/brick.js";
-import { buildLevel, level1, level2, level3, level4 } from "/src/levels.js";
-import Lives from "/src/lives.js";
-import ActualLevel from "/src/actualLevel.js";
+import Paddle from "/mySite/src/paddle.js";
+import InputHandler from "/mySite/src/input.js";
+import Ball from "/mySite/src/ball.js";
+import Brick from "/mySite/src/brick.js";
+import { buildLevel, level1, level2, level3, level4 } from "/mySite/src/levels.js";
+import Lives from "/mySite/src/lives.js";
+import ActualLevel from "/mySite/src/actualLevel.js";
 
 // defining the Game-States as a const-struct
 const GAMESTATE = {

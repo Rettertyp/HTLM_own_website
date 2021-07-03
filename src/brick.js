@@ -1,7 +1,7 @@
 import {
     detectVerticalCollision,
     detectHorizontalCollision
-  } from "/src/collisionDetection.js";
+  } from "/mySite/src/collisionDetection.js";
   
   export default class Brick {
     constructor(game, position) {

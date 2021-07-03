@@ -1,4 +1,4 @@
-import Brick from "/src/brick.js";
+import Brick from "/mySite/src/brick.js";
 
 export function buildLevel(game, level) {
   // instanciate an empty array of bricks
