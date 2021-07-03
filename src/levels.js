@@ -35,11 +35,46 @@ export function buildLevel(game, level) {
 // array of arrays that indicates, where bricks shall be
 export const level1 = [
   // line 1, 1 means there is a brick at the position, o means there is not a brick
-  [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+  [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+  // line 2, ...
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  // line 3, ...
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+];
+
+export const level2 = [
+  // line 1, 1 means there is a brick at the position, o means there is not a brick
+  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+  // line 2, ...
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  // line 3, ...
+  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+  // line 4, ...
+  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]
+];
+
+export const level3 = [
+  // line 1, 1 means there is a brick at the position, o means there is not a brick
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   // line 2, ...
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   // line 3, ...
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   // line 4, ...
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  [1, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+  // line 5, ...
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+];
+
+export const level4 = [
+  // line 1, 1 means there is a brick at the position, o means there is not a brick
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  // line 2, ...
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  // line 3, ...
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  // line 4, ...
+  [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+  // line 5, ...
+  [1, 1, 0, 0, 0, 0, 0, 0, 1, 1]
 ];

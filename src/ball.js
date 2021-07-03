@@ -31,6 +31,14 @@ import {
       this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
       this.speed = { x: 70, y: -70 };
     }
+
+    // speeds up the ball, depending on what level the game is actually in
+    increaseSpeed() {
+      this.speed = { 
+        x: this.speed.x + this.game.actualLevel.current * 10,
+        y: this.speed.y + this.game.actualLevel.current * 10
+      }
+    }
   
     // draw the image to the screen
     draw(ctx) {

@@ -3,15 +3,17 @@ import Paddle from "/src/paddle.js";
 import InputHandler from "/src/input.js";
 import Ball from "/src/ball.js";
 import Brick from "/src/brick.js";
-import { buildLevel, level1 } from "/src/levels.js";
+import { buildLevel, level1, level2, level3, level4 } from "/src/levels.js";
 import Lives from "/src/lives.js";
+import ActualLevel from "/src/actualLevel.js";
 
 // defining the Game-States as a const-struct
 const GAMESTATE = {
   PAUSED: 0,
   RUNNING: 1,
   MENU: 2,
-  GAMEOVER: 3
+  GAMEOVER: 3,
+  NEWLEVEL: 4
 };
 
 export default class Game {
@@ -30,6 +32,9 @@ export default class Game {
     // create the ball
     this.ball = new Ball(this);
 
+    // an array that belongs to the game object and contains the bricks, so that other functions that have acces to the game object may acces them too
+    this.bricks = [];
+
     // create a dummy brick that is used to get the proportions of a brick
     this.dummyBrick = new Brick(this, { x: 0, y: 0 });
 
@@ -39,20 +44,29 @@ export default class Game {
     // the lives, that the player has left
     this.lives = new Lives(this);
 
+    // an array of the levels
+    this.levels = [level1, level2, level3, level4];
+    // the level the player is currently at (the entry of the levels-array)
+    this.actualLevel = new ActualLevel();
+
     // instanciate the inputHandler
     new InputHandler(this);
   }
 
   // crates the level and starts the game
   start() {
-    if (this.gamestate !== GAMESTATE.MENU) return;
+    // imediately quit, if we're not in the menu or trying to load a new level
+    if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
     
     // create a new array named "bricks"
-    let bricks = buildLevel(this, level1);
+    this.bricks = buildLevel(this, this.levels[this.actualLevel.current]);
+
+    // set the ball to the inital position
+    this.ball.reset();
 
     // array of the game Objects
     // ...bricks adds the array bricks to the array gameObjects
-    this.gameObjects = [this.ball, this.paddle, this.lives, ...bricks];
+    this.gameObjects = [this.ball, this.paddle, this.lives, this.actualLevel];
 
     this.gamestate = GAMESTATE.RUNNING;
   }
@@ -64,27 +78,38 @@ export default class Game {
       this.gamestate = GAMESTATE.GAMEOVER;
     }
 
-    // checking whether the game is paused or not
-    // if so, dont do anything until it is not paused anymore
+    // checking whether the game is paused, in menu or over or not
+    // if so, dont do anything until it is in the "running"-state
     if (
       this.gamestate === GAMESTATE.PAUSED || 
       this.gamestate === GAMESTATE.MENU || 
       this.gamestate === GAMESTATE.GAMEOVER
-      ) return;
+    ) return;
 
-    // using the update function for each of the elements of the gameObjects array
-    this.gameObjects.forEach((object) => object.update(deltaTime));
+
+    // if there are no bricks left, the level is complete and the next level will be loaded
+    if (this.bricks.length === 0) {
+      this.actualLevel.nextLevel();
+      this.ball.increaseSpeed();
+      this.paddle.increaseSpeed();
+      this.gamestate = GAMESTATE.NEWLEVEL;
+      this.start();
+    }
+
+    // merging the gameObject-array and the bricks into an array
+    // using the update function for each of the elements of the merged array
+    [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
 
     // delete the Objects that are marked for deletion
-    this.gameObjects = this.gameObjects.filter(
-      (object) => !object.markedForDeletion
+    this.bricks = this.bricks.filter(
+      (brick) => !brick.markedForDeletion
     );
   }
 
   //draws the game components
   draw(ctx) {
     // using the draw function for each of the elements of the gameObjects array
-    this.gameObjects.forEach((object) => object.draw(ctx));
+    [...this.gameObjects, ...this.bricks].forEach((object) => object.draw(ctx));
 
     // the pause state => nothing gets changed, screen is darker and says "Paused"
     if (this.gamestate === GAMESTATE.PAUSED) {
@@ -145,6 +170,6 @@ export default class Game {
     // }
 
     //Ternary operator
-    this.gamestate === GAMESTATE.PAUSED ? this.gamestate = GAMESTATE.RUNNING : this.gamestate = GAMESTATE.PAUSED
+    this.gamestate === GAMESTATE.PAUSED ? this.gamestate = GAMESTATE.RUNNING : this.gamestate = GAMESTATE.PAUSED;
   }
 }
