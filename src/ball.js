@@ -20,10 +20,16 @@ import {
       this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
   
       // struct that contains the speed of the ball in the two directions
-      this.speed = { x: 70, y: 70 };
+      this.speed = { x: 70, y: -70 };
   
       // make the "game" instance avaliable fo the ball to use
       this.game = game;
+    }
+
+    // resets the ball to the middle after touching the ground
+    reset() {
+      this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
+      this.speed = { x: 70, y: -70 };
     }
   
     // draw the image to the screen
@@ -49,9 +55,15 @@ import {
         this.speed.x = -this.speed.x;
       }
   
-      // if it touches the top/bottom wall of the game, it bounces of
-      if (this.position.y > this.gameHeight - this.size || this.position.y < 0) {
+      // if it touches the top wall of the game, it bounces of
+      if (this.position.y < 0) {
         this.speed.y = -this.speed.y;
+      }
+
+      // if it touches the floor of the game, we lower the lives by one
+      if (this.position.y > this.gameHeight - this.size) {
+        this.game.lives.loseLife();
+        this.reset();
       }
   
       if (detectHorizontalCollision(this, this.game.paddle)) {

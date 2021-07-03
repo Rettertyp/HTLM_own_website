@@ -1,5 +1,5 @@
-// import the classes used from the specified locations
 import Game from "/src/game.js";
+// import the classes used from the specified locations
 
 // initialization of the game
 
@@ -14,7 +14,6 @@ const GAME_HEIGHT = 600;
 
 // create a new Game object
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
-game.start();
 
 // game loop
 

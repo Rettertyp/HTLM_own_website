@@ -18,6 +18,11 @@ export default class InputHandler {
           game.togglePause();
           break;
 
+        // keyCode 32 = space bar
+        case 32:
+          game.start();
+          break;
+
         default:
           break;
       }
