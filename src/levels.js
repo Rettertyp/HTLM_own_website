@@ -35,9 +35,9 @@ export function buildLevel(game, level) {
 // array of arrays that indicates, where bricks shall be
 export const level1 = [
   // line 1, 1 means there is a brick at the position, o means there is not a brick
-  [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
   // line 2, ...
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
   // line 3, ...
   [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
 ];
