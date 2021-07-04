@@ -10,7 +10,7 @@ export default class Paddle {
       this.height = 20;
   
       // the maximum speed of the pedal in pixels per Second
-      this.maxSpeed = 80;
+      this.maxSpeed = 100;
   
       // the current speed of the pedal
       this.speed = 0;
@@ -39,7 +39,7 @@ export default class Paddle {
 
     // increases the speed of the paddle depending on the level
     increaseSpeed() {
-      this.maxSpeed = this.maxSpeed + this.game.actualLevel.current * 10;
+      this.maxSpeed = this.maxSpeed + 20;
     }
   
     // draws the paddle

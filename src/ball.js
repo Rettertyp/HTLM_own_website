@@ -35,8 +35,8 @@ import {
     // speeds up the ball, depending on what level the game is actually in
     increaseSpeed() {
       this.speed = { 
-        x: this.speed.x + this.game.actualLevel.current * 10,
-        y: this.speed.y + this.game.actualLevel.current * 10
+        x: this.speed.x + 20,
+        y: this.speed.y + 20
       }
     }
   
