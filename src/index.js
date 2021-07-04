@@ -1,4 +1,4 @@
-import Game from "/mySite/src/game.js";
+import Game from "/src/game.js";
 // import the classes used from the specified locations
 
 // initialization of the game
