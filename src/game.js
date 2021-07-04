@@ -7,14 +7,30 @@ import { buildLevel, level1, level2, level3, level4 } from "/mySite/src/levels.j
 import Lives from "/mySite/src/lives.js";
 import ActualLevel from "/mySite/src/actualLevel.js";
 
-// defining the Game-States as a const-struct
-const GAMESTATE = {
-  PAUSED: 0,
-  RUNNING: 1,
-  MENU: 2,
-  GAMEOVER: 3,
-  NEWLEVEL: 4
-};
+// getting the GAMESTATE-object from a json file via a XMLHttpRequest
+
+// saving the url in a variable to make it more accessible
+var requestURL = 'https://rettertyp.github.io/mySite/src/gamestate.json';
+
+// create a new "XMLHttpRequest"-Object
+var request = new XMLHttpRequest();
+
+// use the "open()"-method on it. Signature: (Operation (in our case a simple 'GET'), URL that we want to request)
+// this loads the data from the url
+request.open('GET', requestURL);
+
+// make clear that we want to load data from a .json file
+request.responseType = 'json';
+
+// send the request
+request.send();
+
+// when the request has been granted and the data has been loaded, do this:
+request.onload = function() {
+  // save the data from the json file into the "GAMESTATE"-Object
+  var GAMESTATE = request.response;
+}
+
 
 export default class Game {
   // "constructs" a new game
