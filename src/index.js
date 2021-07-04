@@ -5,7 +5,7 @@ import Game from "/mySite/src/game.js";
 
 // gameScreen has been defined in the index.html
 //ctx = context
-let ctx = $('#canvas')[0].getContext('2d');
+let ctx = $('#gameScreen')[0].getContext('2d');
 // version without jQuery:
 // let ctx = canvas.getContext("2d");
 
