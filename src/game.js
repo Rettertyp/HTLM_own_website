@@ -29,7 +29,7 @@ let GAMESTATE;
 // when the request has been granted and the data has been loaded, do this:
 request.onload = function(GAMESTATE) {
   // save the data from the json file into the "GAMESTATE"-Object
-  GAMESTATE = request.response;
+  GAMESTATE = JSON.parse(request.response);
 }
 
 
@@ -40,7 +40,7 @@ export default class Game {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
-    // set the gamestate to running
+    // set the gamestate to menu
     this.gamestate = GAMESTATE.MENU;
 
     // create a new paddle
