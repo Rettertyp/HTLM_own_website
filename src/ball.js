@@ -7,7 +7,7 @@ import {
   export default class Ball {
     constructor(game) {
       // import the image of the ball
-      this.image = document.getElementById("img_ball");
+      this.image = $('#img_ball')[0];
   
       // proportions of the game screen
       this.gameWidth = game.gameWidth;

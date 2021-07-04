@@ -4,9 +4,10 @@ import Game from "/mySite/src/game.js";
 // initialization of the game
 
 // gameScreen has been defined in the index.html
-let canvas = document.getElementById("gameScreen");
 //ctx = context
-let ctx = canvas.getContext("2d");
+let ctx = $('#canvas')[0].getContext('2d');
+// version without jQuery:
+// let ctx = canvas.getContext("2d");
 
 // consts that stores the proportions of the screen
 const GAME_WIDTH = 800;
@@ -14,6 +15,7 @@ const GAME_HEIGHT = 600;
 
 // create a new Game object
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
+
 
 // game loop
 

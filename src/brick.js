@@ -6,7 +6,8 @@ import {
   export default class Brick {
     constructor(game, position) {
       // import the image of the ball
-      this.image = document.getElementById("img_brick");
+      this.image = $('#img_brick')[0];
+      //this.image = document.getElementById("img_brick");
   
       // size of the brick
       this.width = game.gameWidth / 10;
