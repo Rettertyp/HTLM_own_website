@@ -25,10 +25,11 @@ request.responseType = 'json';
 // send the request
 request.send();
 
+let GAMESTATE;
 // when the request has been granted and the data has been loaded, do this:
-request.onload = function() {
+request.onload = function(GAMESTATE) {
   // save the data from the json file into the "GAMESTATE"-Object
-  var GAMESTATE = request.response;
+  GAMESTATE = request.response;
 }
 
 
