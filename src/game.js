@@ -36,7 +36,7 @@ export default class Game {
     // when the request has been granted and the data has been loaded, do this:
     request.onload = function(GAMESTATE) {
       // save the data from the json file into the "GAMESTATE"-Object
-      GAMESTATE = request.response;
+      GAMESTATE = JSON.parse(request.response);
     }
 
     console.log(GAMESTATE);
