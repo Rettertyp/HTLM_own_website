@@ -16,28 +16,30 @@ export default class Game {
 
     // getting the GAMESTATE-object from a json file via a XMLHttpRequest
 
-  // saving the url in a variable to make it more accessible
-  var requestURL = 'https://rettertyp.github.io/mySite/src/gamestate.json';
+    // saving the url in a variable to make it more accessible
+    var requestURL = 'https://rettertyp.github.io/mySite/src/gamestate.json';
 
-  // create a new "XMLHttpRequest"-Object
-  var request = new XMLHttpRequest();
+    // create a new "XMLHttpRequest"-Object
+    var request = new XMLHttpRequest();
 
-  // use the "open()"-method on it. Signature: (Operation (in our case a simple 'GET'), URL that we want to request)
-  // this loads the data from the url
-  request.open('GET', requestURL);
+    // use the "open()"-method on it. Signature: (Operation (in our case a simple 'GET'), URL that we want to request)
+    // this loads the data from the url
+    request.open('GET', requestURL);
 
-  // make clear that we want to load data from a .json file
-  request.responseType = 'json';
+    // make clear that we want to load data from a .json file
+    request.responseType = 'json';
 
-  // send the request
-  request.send();
+    // send the request
+    request.send();
 
-  let GAMESTATE;
-  // when the request has been granted and the data has been loaded, do this:
-  request.onload = function(GAMESTATE) {
-    // save the data from the json file into the "GAMESTATE"-Object
-    GAMESTATE = request.response;
-  }
+    let GAMESTATE;
+    // when the request has been granted and the data has been loaded, do this:
+    request.onload = function(GAMESTATE) {
+      // save the data from the json file into the "GAMESTATE"-Object
+      GAMESTATE = request.response;
+    }
+
+    console.log(GAMESTATE);
 
 
     // screen proportions
