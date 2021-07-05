@@ -29,7 +29,7 @@ let GAMESTATE;
 // when the request has been granted and the data has been loaded, do this:
 request.onload = function() {
   // save the data from the json file into the "GAMESTATE"-Object
-  console.log(request.response);
+  GAMESTATE = request.response;
 }
 
 
