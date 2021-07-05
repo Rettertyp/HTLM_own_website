@@ -27,9 +27,9 @@ request.send();
 
 let GAMESTATE;
 // when the request has been granted and the data has been loaded, do this:
-request.onload = function(GAMESTATE) {
+GAMESTATE = request.onload = function() {
   // save the data from the json file into the "GAMESTATE"-Object
-  GAMESTATE = JSON.parse(request.response);
+  return request.response;
 }
 
 
