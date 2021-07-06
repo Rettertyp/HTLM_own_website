@@ -14,6 +14,7 @@ export default class Game {
   // "constructs" a new game
   constructor(gameWidth, gameHeight) {
 
+    /*
     // getting the GAMESTATE-object from a json file via a XMLHttpRequest
 
     // saving the url in a variable to make it more accessible
@@ -32,7 +33,7 @@ export default class Game {
     // send the request
     request.send();
 
-    let GAMESTATE = {};
+    let GAMESTATE;
     // when the request has been granted and the data has been loaded, do this:
     request.onload = function(GAMESTATE) {
       // save the data from the json file into the "GAMESTATE"-Object
@@ -40,8 +41,9 @@ export default class Game {
     }
 
     console.log(GAMESTATE);
+    */
 
-    GAMESTATE = {
+    let GAMESTATE = {
       PAUSED: 0,
       RUNNING: 1, 
       MENU: 2,
