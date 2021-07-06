@@ -39,7 +39,7 @@ export default class Paddle {
 
     // increases the speed of the paddle depending on the level
     increaseSpeed() {
-      this.maxSpeed = this.maxSpeed + 20;
+      this.maxSpeed = this.maxSpeed + 30;
     }
   
     // draws the paddle
