@@ -7,7 +7,7 @@ import { buildLevel, level1, level2, level3, level4 } from "/mySite/src/levels.j
 import Lives from "/mySite/src/lives.js";
 import ActualLevel from "/mySite/src/actualLevel.js";
 
-/*
+
 const GAMESTATE = {
   PAUSED: 0,
   RUNNING: 1, 
@@ -15,8 +15,8 @@ const GAMESTATE = {
   GAMEOVER: 3,
   NEWLEVEL: 4
 }
-*/
 
+/*
 // getting the GAMESTATE-object from a json file via a XMLHttpRequest
 
 // saving the url in a variable to make it more accessible
@@ -43,7 +43,7 @@ request.onload = function(GAMESTATE) {
 }
 
 console.log(GAMESTATE);
-  
+*/
 
 
 
