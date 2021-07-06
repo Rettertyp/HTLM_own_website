@@ -32,14 +32,22 @@ export default class Game {
     // send the request
     request.send();
 
-    let GAMESTATE;
+    let GAMESTATE = {};
     // when the request has been granted and the data has been loaded, do this:
     request.onload = function(GAMESTATE) {
       // save the data from the json file into the "GAMESTATE"-Object
-      GAMESTATE = JSON.parse(request.response);
+      GAMESTATE = request.response;
     }
 
     console.log(GAMESTATE);
+
+    GAMESTATE = {
+      PAUSED: 0,
+      RUNNING: 1, 
+      MENU: 2,
+      GAMEOVER: 3,
+      NEWLEVEL: 4
+    }
 
 
     // screen proportions
