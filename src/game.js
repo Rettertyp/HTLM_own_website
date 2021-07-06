@@ -3,7 +3,7 @@ import Paddle from "/mySite/src/paddle.js";
 import InputHandler from "/mySite/src/input.js";
 import Ball from "/mySite/src/ball.js";
 import Brick from "/mySite/src/brick.js";
-import { buildLevel, level1, level2, level3, level4 } from "/mySite/src/levels.js";
+import { buildLevel, level1, level2, level3, level4, level5, level6 } from "/mySite/src/levels.js";
 import Lives from "/mySite/src/lives.js";
 import ActualLevel from "/mySite/src/actualLevel.js";
 
@@ -77,7 +77,7 @@ export default class Game {
     this.lives = new Lives(this);
 
     // an array of the levels
-    this.levels = [level1, level2, level3, level4];
+    this.levels = [level1, level2, level3, level4, level5, level6];
     // the level the player is currently at (the entry of the levels-array)
     this.actualLevel = new ActualLevel();
 
