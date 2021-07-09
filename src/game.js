@@ -46,12 +46,12 @@ request.onload = function(GAMESTATE) {
 console.log(GAMESTATE);
 */
 
-var GAMESTATE;
+
 
 // using the fetch function to load the json file
-fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
+var GAMESTATE = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
   .then(response => response.json())
-  .then(data => GAMESTATE = data);
+  .then(data => {return data});
 
 
 
