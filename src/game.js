@@ -49,11 +49,13 @@ console.log(GAMESTATE);
 
 
 // using the fetch function to load the json file
-var GAMESTATE = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
+var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
   .then(response => response.json())
-  .then(response => {return response.value});
+  .then(data => {return data});
 
-  console.log(GAMESTATE);
+var GAMESTATE = promise.value;
+
+console.log(GAMESTATE);
 
 
 export default class Game {
