@@ -7,7 +7,7 @@ import { buildLevel, level1, level2, level3, level4, level5, level6 } from "/myS
 import Lives from "/mySite/src/lives.js";
 import ActualLevel from "/mySite/src/actualLevel.js";
 
-
+/*
 const GAMESTATE = {
   PAUSED: 0,
   RUNNING: 1, 
@@ -15,6 +15,7 @@ const GAMESTATE = {
   GAMEOVER: 3,
   NEWLEVEL: 4
 }
+*/
 
 /*
 // getting the GAMESTATE-object from a json file via a XMLHttpRequest
@@ -35,7 +36,7 @@ request.responseType = 'json';
 // send the request
 request.send();
 
-const GAMESTATE = {};
+var GAMESTATE = {};
 // when the request has been granted and the data has been loaded, do this:
 request.onload = function(GAMESTATE) {
   // save the data from the json file into the "GAMESTATE"-Object
@@ -44,6 +45,13 @@ request.onload = function(GAMESTATE) {
 
 console.log(GAMESTATE);
 */
+
+var GAMESTATE;
+
+// using the fetch function to load the json file
+fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
+  .then(response => response.json())
+  .then(data => GAMESTATE);
 
 
 
