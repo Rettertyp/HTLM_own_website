@@ -53,6 +53,7 @@ var GAMESTATE = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
   .then(response => response.json())
   .then(data => {return data});
 
+  console.log(GAMESTATE);
 
 
 export default class Game {
