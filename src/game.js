@@ -47,18 +47,19 @@ console.log(GAMESTATE);
 */
 
 
-
 // using the fetch function to load the json file
 var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
   .then(response => response.json())
   .then(data => {return data});
 
-var GAMESTATE = promise.value;
+var GAMESTATE = promise.then(value => {return value});
 
 console.log(GAMESTATE);
 
 
+
 export default class Game {
+  
   // "constructs" a new game
   constructor(gameWidth, gameHeight) {
 
