@@ -51,7 +51,7 @@ console.log(GAMESTATE);
 // using the fetch function to load the json file
 var GAMESTATE = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
   .then(response => response.json())
-  .then(response => {return response});
+  .then(response => {return response.value});
 
   console.log(GAMESTATE);
 
