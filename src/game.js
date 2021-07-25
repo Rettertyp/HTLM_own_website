@@ -47,14 +47,16 @@ console.log(GAMESTATE);
 */
 
 
-// using the fetch function to load the json file
-var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
-  .then(response => response.json())
-  .then(data => {return data});
+// // using the fetch function to load the json file
+// var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
+//   .then(response => response.json())
+//   .then(data => {return data});
 
-var GAMESTATE = promise.then(value => {return value});
+// var GAMESTATE = promise.then(value => {return value});
 
-console.log(GAMESTATE);
+// console.log(GAMESTATE);
+var gamestate = $.getJSON("src/gamestate.json");
+console.log(gamestate);
 
 
 
