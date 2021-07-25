@@ -61,6 +61,7 @@ $.ajax({
   async: false,
   dataType: 'json',
   success: function(data) {
+      console.log(data);
       gamestate = data.responseJSON;
   }
 });
