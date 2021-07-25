@@ -55,8 +55,19 @@ console.log(GAMESTATE);
 // var GAMESTATE = promise.then(value => {return value});
 
 // console.log(GAMESTATE);
-var gamestate = $.getJSON("src/gamestate.json");
+var gamestate = {};
+$.ajax({
+  url: "src/gamestate.json",
+  async: false,
+  dataType: 'json',
+  success: function(data) {
+      gamestate = data.responseJSON;
+  }
+});
+
 console.log(gamestate);
+
+
 
 
 
