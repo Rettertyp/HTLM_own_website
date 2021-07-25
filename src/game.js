@@ -55,18 +55,18 @@ console.log(GAMESTATE);
 // var GAMESTATE = promise.then(value => {return value});
 
 // console.log(GAMESTATE);
-var gamestate = {};
+var GAMESTATE = {};
 $.ajax({
   url: "src/gamestate.json",
   async: false,
   dataType: 'json',
   success: function(data) {
       console.log(data);
-      gamestate = data.responseJSON;
+      GAMESTATE = data;
   }
 });
 
-console.log(gamestate);
+console.log(GAMESTATE);
 
 
 
