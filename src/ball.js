@@ -29,14 +29,14 @@ import {
     // resets the ball to the middle after touching the ground
     reset() {
       this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
-      this.speed = { x: 70, y: -70 };
+      this.speed = { x: Math.abs(this.speed.x), y: -Math.abs(this.speed.y) };
     }
 
     // speeds up the ball, depending on what level the game is actually in
     increaseSpeed() {
       this.speed = { 
-        x: this.speed.x + 60,
-        y: this.speed.y + 60
+        x: this.speed.x + 22,
+        y: this.speed.y + 22
       }
     }
   
