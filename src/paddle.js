@@ -10,7 +10,7 @@ export default class Paddle {
       this.height = 20;
   
       // the maximum speed of the pedal in pixels per Second
-      this.maxSpeed = 110;
+      this.maxSpeed = 120;
   
       // the current speed of the pedal
       this.speed = 0;

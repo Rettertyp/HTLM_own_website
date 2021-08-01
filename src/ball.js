@@ -20,7 +20,7 @@ import {
       this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
   
       // struct that contains the speed of the ball in the two directions
-      this.speed = { x: 80, y: -80 };
+      this.speed = { x: 60, y: -60 };
   
       // make the "game" instance avaliable fo the ball to use
       this.game = game;
