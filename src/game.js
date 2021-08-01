@@ -61,12 +61,10 @@ $.ajax({
   async: false,
   dataType: 'json',
   success: function(data) {
-      console.log(data);
       GAMESTATE = data;
   }
 });
 
-console.log(GAMESTATE);
 
 
 
