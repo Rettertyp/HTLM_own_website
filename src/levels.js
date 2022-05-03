@@ -1,4 +1,4 @@
-import Brick from "/mySite/src/brick.js";
+import Brick from "./brick.js";
 
 export function buildLevel(game, level) {
   // instanciate an empty array of bricks
@@ -18,7 +18,7 @@ export function buildLevel(game, level) {
           */
           ///*
           x: game.dummyBrick.width * brickIndex,
-          y: game.dummyBrick.height * (rowIndex + 3)
+          y: game.dummyBrick.height * (rowIndex + 3),
           //*/
         };
         // insert the brick to the "bricks"-array
@@ -39,7 +39,7 @@ export const level1 = [
   // line 2, ...
   [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
   // line 3, ...
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ];
 
 export const level2 = [
@@ -50,7 +50,7 @@ export const level2 = [
   // line 3, ...
   [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
   // line 4, ...
-  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0]
+  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
 ];
 
 export const level3 = [
@@ -63,11 +63,11 @@ export const level3 = [
   // line 4, ...
   [1, 0, 0, 1, 1, 1, 1, 0, 0, 0],
   // line 5, ...
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ];
 
 export const level4 = [
-  // line 1, 
+  // line 1,
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   // line 2, ...
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -76,31 +76,31 @@ export const level4 = [
   // line 4, ...
   [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
   // line 5, ...
-  [1, 1, 0, 0, 0, 0, 0, 0, 1, 1]
+  [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
 ];
 
 export const level5 = [
-  // line 1, 
-  [0,0,0,0,1,1,0,0,0,0],
+  // line 1,
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
   // line 2, ...
-  [0,0,1,1,0,0,1,1,0,0],
+  [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
   // line 3, ...
-  [1,1,1,0,0,0,1,0,1,1],
+  [1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
   // line 4, ...
-  [0,0,1,1,0,0,1,1,0,0],
+  [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
   // line 5, ...
-  [0,0,0,0,1,1,0,0,0,0]
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ];
 
 export const level6 = [
-  // line 1, 
-  [1,0,1,0,1,0,1,0,1,0],
+  // line 1,
+  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
   // line 2, ...
-  [0,1,0,1,0,1,0,1,0,1],
+  [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
   // line 3, ...
-  [1,0,1,0,1,0,1,0,1,0],
+  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
   // line 4, ...
-  [0,1,0,1,0,1,0,1,0,1],
+  [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
   // line 5, ...
-  [1,1,0,0,1,1,0,0,1,1]
+  [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
 ];

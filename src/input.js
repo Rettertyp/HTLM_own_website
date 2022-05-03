@@ -1,4 +1,3 @@
-
 export default class InputHandler {
   constructor(game) {
     // adding an "event listener" that tracks the keys that are down and returns the keyCodes

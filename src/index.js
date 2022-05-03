@@ -1,11 +1,11 @@
-import Game from "/mySite/src/game.js";
+import Game from "./game.js";
 // import the classes used from the specified locations
 
 // initialization of the game
 
 // gameScreen has been defined in the index.html
 //ctx = context
-let ctx = $("#gameScreen")[0].getContext('2d');
+let ctx = $("#gameScreen")[0].getContext("2d");
 // version without jQuery:
 // let ctx = canvas.getContext("2d");
 
@@ -15,7 +15,6 @@ const GAME_HEIGHT = 600;
 
 // create a new Game object
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
-
 
 // game loop
 

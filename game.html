@@ -2,78 +2,81 @@
 
 <html>
 
-    
-    <!-- the head of the site -->
-    <head>
-        <!-- linking the stylsheet, refering to the style.css file and telling the site that style.css is a text-css file -->
-        <link rel="stylesheet" href="style.css" type="text/css">
 
-        <!-- the title of the website -->
-        <title>
-            Rettertyp | GAME
-        </title>
+<!-- the head of the site -->
 
-        <!-- with this option, we could theoretically use Umlaute such as ä, ü and so on -->
-        <meta charset="utf-8">
+<head>
+    <!-- linking the stylsheet, refering to the style.css file and telling the site that style.css is a text-css file -->
+    <link rel="stylesheet" href="style.css" type="text/css">
 
-    </head>
+    <!-- the title of the website -->
+    <title>
+        Rettertyp | GAME
+    </title>
 
-    <!-- the main body of the page -->
-    <body>
-        <!-- the body with the ID wrapper (ID => can only be used once, class => can be used multiple times)-->
-        <div id="wrapper">
-            <!-- header of this body -->
-            <header>
-                <!-- insertion of the logo, in case it cant be found it will say "Logo" -->
-                <img src="assets/images/Logo.png" alt="Logo">
-            </header>
+    <!-- with this option, we could theoretically use Umlaute such as ä, ü and so on -->
+    <meta charset="utf-8">
 
-            <!-- the naviagtion bar -->
-            <nav>
-                <!-- unordered list (=> points, no numbers) -->
-                <ul>    
-                    <!-- a href="destination.html" creates a link on the element -->
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="game.html">Game</a></li>
-                </ul>
+</head>
+
+<!-- the main body of the page -->
+
+<body>
+    <!-- the body with the ID wrapper (ID => can only be used once, class => can be used multiple times)-->
+    <div id="wrapper">
+        <!-- header of this body -->
+        <header>
+            <!-- insertion of the logo, in case it cant be found it will say "Logo" -->
+            <img src="assets/images/Logo.png" alt="Logo">
+        </header>
+
+        <!-- the naviagtion bar -->
+        <nav>
+            <!-- unordered list (=> points, no numbers) -->
+            <ul>
+                <!-- a href="destination.html" creates a link on the element -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="game.html">Game</a></li>
+            </ul>
 
 
-            </nav>
+        </nav>
 
-            <!-- the footer of the body -->
-            <footer>
-                
+        <!-- the footer of the body -->
+        <footer>
 
-            </footer>
 
-        </div>
+        </footer>
 
-        <div id="game">    
+    </div>
 
-            <h1>Brick Breaker</h1>
-            <p>
-                Controls: Use the left and right arrow-keys to move the paddle, press escape to pause.
-            </p>
-            <!-- loading the image into html, it has the ID img_ball which we an use in JS -->
-            <img id="img_ball" src="assets/images/ball.png" />
-            <img id="img_brick" src="assets/images/brick.png" />
+    <div id="game">
 
-            <!-- creating a canvas (screen on which we can draw) -->
-            <canvas id="gameScreen" width="800" height="600"></canvas>
+        <h1>Brick Breaker</h1>
+        <p>
+            Controls: Use the left and right arrow-keys to move the paddle, press escape to pause.
+        </p>
+        <!-- loading the image into html, it has the ID img_ball which we an use in JS -->
+        <img id="img_ball" src="assets/images/ball.png" />
+        <img id="img_brick" src="assets/images/brick.png" />
 
-            <!-- importing the jQuery library -->
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <!-- creating a canvas (screen on which we can draw) -->
+        <canvas id="gameScreen" width="800" height="600"></canvas>
 
-            <script type="module" src="src/index.js"></script>
+        <!-- importing the jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-            
-        </div>
+        <script type="module" src="src/index.js"></script>
 
-        
 
-    </body>
+    </div>
+
+
+
+</body>
 
 
 </html>

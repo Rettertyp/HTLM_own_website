@@ -1,69 +1,19 @@
 // import the classes used from the specified locations
-import Paddle from "/mySite/src/paddle.js";
-import InputHandler from "/mySite/src/input.js";
-import Ball from "/mySite/src/ball.js";
-import Brick from "/mySite/src/brick.js";
-import { buildLevel, level1, level2, level3, level4, level5, level6 } from "/mySite/src/levels.js";
-import Lives from "/mySite/src/lives.js";
-import ActualLevel from "/mySite/src/actualLevel.js";
+import Paddle from "./paddle.js";
+import InputHandler from "./input.js";
+import Ball from "./ball.js";
+import Brick from "./brick.js";
+import { buildLevel, level1, level2, level3, level4, level5, level6 } from "./levels.js";
+import Lives from "./lives.js";
+import ActualLevel from "./actualLevel.js";
 
-/*
 const GAMESTATE = {
   PAUSED: 0,
-  RUNNING: 1, 
+  RUNNING: 1,
   MENU: 2,
   GAMEOVER: 3,
-  NEWLEVEL: 4
-}
-*/
-
-/*
-// das ist nur eine Spielerei, das kann man viel einfacher wie oben über das const Object lösen
-// getting the GAMESTATE-object from a json file via a XMLHttpRequest
-
-// saving the url in a variable to make it more accessible
-var requestURL = 'https://rettertyp.github.io/mySite/src/gamestate.json';
-
-// create a new "XMLHttpRequest"-Object
-var request = new XMLHttpRequest();
-
-// use the "open()"-method on it. Signature: (Operation (in our case a simple 'GET'), URL that we want to request)
-// this loads the data from the url
-request.open('GET', requestURL);
-
-// make clear that we want to load data from a .json file
-request.responseType = 'json';
-
-// send the request
-request.send();
-
-var GAMESTATE = {};
-// when the request has been granted and the data has been loaded, do this:
-request.onload = function(GAMESTATE) {
-  // save the data from the json file into the "GAMESTATE"-Object
-  GAMESTATE = request.response;
-}
-
-console.log(GAMESTATE);
-*/
-
-// // using the fetch function to load the json file
-// var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
-//   .then(response => response.json())
-//   .then(data => {return data});
-
-// var GAMESTATE = promise.then(value => {return value});
-
-// console.log(GAMESTATE);
-var GAMESTATE = {};
-$.ajax({
-  url: "src/gamestate.json",
-  async: false,
-  dataType: "json",
-  success: function (data) {
-    GAMESTATE = data;
-  },
-});
+  NEWLEVEL: 4,
+};
 
 export default class Game {
   // "constructs" a new game
