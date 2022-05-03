@@ -18,6 +18,7 @@ const GAMESTATE = {
 */
 
 /*
+// das ist nur eine Spielerei, das kann man viel einfacher wie oben über das const Object lösen
 // getting the GAMESTATE-object from a json file via a XMLHttpRequest
 
 // saving the url in a variable to make it more accessible
@@ -46,7 +47,6 @@ request.onload = function(GAMESTATE) {
 console.log(GAMESTATE);
 */
 
-
 // // using the fetch function to load the json file
 // var promise = fetch('https://rettertyp.github.io/mySite/src/gamestate.json')
 //   .then(response => response.json())
@@ -59,22 +59,15 @@ var GAMESTATE = {};
 $.ajax({
   url: "src/gamestate.json",
   async: false,
-  dataType: 'json',
-  success: function(data) {
-      GAMESTATE = data;
-  }
+  dataType: "json",
+  success: function (data) {
+    GAMESTATE = data;
+  },
 });
 
-
-
-
-
-
 export default class Game {
-  
   // "constructs" a new game
   constructor(gameWidth, gameHeight) {
-
     // screen proportions
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
@@ -113,7 +106,7 @@ export default class Game {
   start() {
     // imediately quit, if we're not in the menu or trying to load a new level
     if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
-    
+
     // create a new array named "bricks"
     this.bricks = buildLevel(this, this.levels[this.actualLevel.current]);
 
@@ -136,12 +129,7 @@ export default class Game {
 
     // checking whether the game is paused, in menu or over or not
     // if so, dont do anything until it is in the "running"-state
-    if (
-      this.gamestate === GAMESTATE.PAUSED || 
-      this.gamestate === GAMESTATE.MENU || 
-      this.gamestate === GAMESTATE.GAMEOVER
-    ) return;
-
+    if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
 
     // if there are no bricks left, the level is complete and the next level will be loaded
     if (this.bricks.length === 0) {
@@ -157,9 +145,7 @@ export default class Game {
     [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
 
     // delete the Objects that are marked for deletion
-    this.bricks = this.bricks.filter(
-      (brick) => !brick.markedForDeletion
-    );
+    this.bricks = this.bricks.filter((brick) => !brick.markedForDeletion);
   }
 
   //draws the game components
@@ -193,11 +179,7 @@ export default class Game {
       ctx.font = "30px Arial";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
-      ctx.fillText(
-      "Welcome to Brick Breaker! Press space to start", 
-      this.gameWidth / 2, 
-      this.gameHeight / 2
-      );
+      ctx.fillText("Welcome to Brick Breaker! Press space to start", this.gameWidth / 2, this.gameHeight / 2);
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
@@ -213,8 +195,6 @@ export default class Game {
       ctx.textAlign = "center";
       ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
     }
-
-
   }
 
   // pausing / unpausing the game
@@ -226,6 +206,6 @@ export default class Game {
     // }
 
     //Ternary operator
-    this.gamestate === GAMESTATE.PAUSED ? this.gamestate = GAMESTATE.RUNNING : this.gamestate = GAMESTATE.PAUSED;
+    this.gamestate === GAMESTATE.PAUSED ? (this.gamestate = GAMESTATE.RUNNING) : (this.gamestate = GAMESTATE.PAUSED);
   }
 }
