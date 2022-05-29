@@ -9,8 +9,6 @@ export default class InputHandler {
     this.game = game;
     // waiting for the gamepad to be connected, then start the game
     window.addEventListener("gamepadconnected", (e) => {
-      this.pauseButtonWasPressed = true;
-      game.togglePause();
       this.gamepad = navigator.getGamepads()[e.gamepad.index];
     });
   }
@@ -57,6 +55,7 @@ export default class InputHandler {
     // reset the game if the reset button is pressed and the game is over
     if (this.gamepad.buttons[7].pressed) {
       // when the reload button has just been pressed, save the time
+      const date = new Date();
       if (!this.reloadButtonWasPressed) {
         this.reloadButtonWasPressed = true;
         this.reloadButtonFirstPressed = date.getTime();
