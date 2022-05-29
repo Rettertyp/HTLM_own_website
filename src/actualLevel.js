@@ -1,6 +1,6 @@
 export default class ActualLevel {
     constructor() {
-        // lifes left
+        // actual level
         this.current = 0;
 
         // coordinates where we want to draw items

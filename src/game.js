@@ -3,7 +3,7 @@ import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
 import Ball from "./ball.js";
 import Brick from "./brick.js";
-import { buildLevel, level1, level2, level3, level4, level5, level6 } from "./levels.js";
+import { buildLevel, levels } from "./levels.js";
 import Lives from "./lives.js";
 import ActualLevel from "./actualLevel.js";
 
@@ -44,7 +44,7 @@ export default class Game {
     this.lives = new Lives(this);
 
     // an array of the levels
-    this.levels = [level1, level2, level3, level4, level5, level6];
+    this.levels = levels;
     // the level the player is currently at (the entry of the levels-array)
     this.actualLevel = new ActualLevel();
 
@@ -58,7 +58,7 @@ export default class Game {
     if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
     
     // create a new array named "bricks"
-    this.bricks = buildLevel(this, this.levels[this.actualLevel.current]);
+    this.bricks = buildLevel(this);
 
     // set the ball to the inital position
     this.ball.reset();

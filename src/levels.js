@@ -1,8 +1,10 @@
 import Brick from "./brick.js";
 
-export function buildLevel(game, level) {
+export function buildLevel(game) {
   // instanciate an empty array of bricks
   let bricks = [];
+
+  const level = game.levels[game.actualLevel.current];
 
   // go over each row to decide whether or not to put a brick there
   level.forEach((row, rowIndex) => {
@@ -11,7 +13,7 @@ export function buildLevel(game, level) {
       // if the entry is 1, build a brick there
       if (brick === 1) {
         // calculate the position of the brick
-        let position = {
+        const position = {
           /*
           x: 80 * brickIndex,
           y: 20+ 24 * rowIndex
@@ -33,74 +35,45 @@ export function buildLevel(game, level) {
 
 // export const => a value that can be imported elsewhere
 // array of arrays that indicates, where bricks shall be
-export const level1 = [
-  // line 1, 1 means there is a brick at the position, o means there is not a brick
-  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-  // line 2, ...
-  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-  // line 3, ...
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-];
-
-export const level2 = [
-  // line 1, 1 means there is a brick at the position, o means there is not a brick
-  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-  // line 2, ...
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-  // line 3, ...
-  [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-  // line 4, ...
-  [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-];
-
-export const level3 = [
-  // line 1, 1 means there is a brick at the position, o means there is not a brick
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 2, ...
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 3, ...
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 4, ...
-  [1, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-  // line 5, ...
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-];
-
-export const level4 = [
-  // line 1,
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 2, ...
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 3, ...
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  // line 4, ...
-  [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
-  // line 5, ...
-  [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
-];
-
-export const level5 = [
-  // line 1,
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-  // line 2, ...
-  [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-  // line 3, ...
-  [1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
-  // line 4, ...
-  [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-  // line 5, ...
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-];
-
-export const level6 = [
-  // line 1,
-  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-  // line 2, ...
-  [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-  // line 3, ...
-  [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-  // line 4, ...
-  [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-  // line 5, ...
-  [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
-];
+export const levels = [
+  [
+    // level 1
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+  ], [
+    // level 2
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+  ], [
+    // level 3
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+  ], [
+    // level 4
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
+  ], [
+    // level 5
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+    [1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
+    [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+  ], [
+    // level 6
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
+  ]
+]
