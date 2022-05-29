@@ -100,7 +100,7 @@ export default class Game {
 
   // reset the game
   reset() {
-    this = new Game(this.gameWidth, this.gameHeight);
+    location.reload();
   }
 
   //draws the game components
