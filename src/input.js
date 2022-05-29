@@ -3,28 +3,29 @@ export default class InputHandler {
     // how far the arrow keys have to be pressed to be considered as pressed
     this.threshold = 0.2;
     // context information about the pause button to avoid double pressing
-    this.pauseButtonStatus = {
-      wasPressed: false,
-      lastTimePressed: 0,
-    };
+    this.pauseButtonWasPressed = false;
+    this.reloadButtonWasPressed = false;
+    this.reloadButtonFirstPressed;
     this.game = game;
     // waiting for the gamepad to be connected, then start the game
     window.addEventListener("gamepadconnected", (e) => {
-      this.pressPause(new Date());
+      this.pauseButtonWasPressed = true;
+      game.togglePause();
       this.gamepad = navigator.getGamepads()[e.gamepad.index];
     });
   }
 
   // fetch all inputs from the gamepad and react to them
   update(deltaTime) {
+    const date = new Date();
+
     // return when the gamepad isn't connected (yet)
     if (!this.gamepad) {
       return;
     }
 
     // getting the direction of the arrow keys
-    const axes = this.gamepad.axes[0];
-    const paddleDirection = Math.abs(axes) >= this.threshold ? axes : 0;
+    const paddleDirection = Math.abs(this.gamepad.axes[0]) >= this.threshold ? this.gamepad.axes[0] : 0;
     // react to the direction of the arrow keys
     switch (paddleDirection) {
       case 0:
@@ -42,28 +43,30 @@ export default class InputHandler {
     }
 
     // check if the start/stop button is pressed
-    pauseButtonCheck: if (this.gamepad.buttons[6].pressed) {
-      // if the button was pressed before, check if it was pressed again in the last second
-      const date = new Date();
-      if (this.pauseButtonStatus.wasPressed && date.getTime() - this.pauseButtonStatus.lastTimePressed <= 1000) {
-        break pauseButtonCheck;
+    if (this.gamepad.buttons[6].pressed) {
+      // if the pause button was just pressed, pause/start the game
+      if (!this.pauseButtonWasPressed) {
+        this.pauseButtonWasPressed = true;
+        this.game.togglePause();
       }
-
-      this.pressPause(date);
     } else {
       // if the button isn't pressed anymore, reset the status
-      this.pauseButtonStatus.wasPressed = false;
+      this.pauseButtonWasPressed = false;
     }
 
     // reset the game if the reset button is pressed and the game is over
-    if (this.game.lives.isDead() && this.gamepad.buttons[7].pressed) {
-      this.game.reset();
-    }
-  }
+    if (this.gamepad.buttons[7].pressed) {
+      // when the reload button has just been pressed, save the time
+      if (!this.reloadButtonWasPressed) {
+        this.reloadButtonWasPressed = true;
+        this.reloadButtonFirstPressed = date.getTime();
 
-  pressPause(date) {
-    this.pauseButtonStatus.wasPressed = true;
-    this.pauseButtonStatus.lastTimePressed = date.getTime();
-    this.game.togglePause();
+        // when the reload button has been constantly pressed for more than 3 seconds, reset the game
+      } else if (date.getTime() - this.reloadButtonFirstPressed >= 3000) {
+        this.game.reset();
+      }
+    } else {
+      this.reloadButtonWasPressed = false;
+    }
   }
 }

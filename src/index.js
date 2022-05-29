@@ -4,8 +4,9 @@ import Game from "./game.js";
 // initialization of the game
 
 // gameScreen has been defined in the index.html
+const screenName = "gameScreen";
 //ctx = context
-let ctx = $("#gameScreen")[0].getContext("2d");
+const ctx = $(`#${screenName}`)[0].getContext("2d");
 // version without jQuery:
 // let ctx = canvas.getContext("2d");
 
