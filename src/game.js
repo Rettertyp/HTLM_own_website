@@ -116,6 +116,7 @@ export default class Game {
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("Paused", this.gameWidth / 2, this.gameHeight / 2);
+      return;
     }
 
     if (this.gamestate === GAMESTATE.MENU) {
@@ -130,6 +131,7 @@ export default class Game {
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("Welcome to Brick Breaker! Press space to start", this.gameWidth / 2, this.gameHeight / 2);
+      return;
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
