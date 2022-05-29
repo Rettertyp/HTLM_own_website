@@ -49,7 +49,7 @@ export default class Game {
     this.actualLevel = new ActualLevel();
 
     // instanciate the inputHandler
-    new InputHandler(this);
+    this.inputHandler = new InputHandler(this);
   }
 
   // crates the level and starts the game
@@ -92,10 +92,15 @@ export default class Game {
 
     // merging the gameObject-array and the bricks into an array
     // using the update function for each of the elements of the merged array
-    [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
+    [...this.gameObjects, ...this.bricks, this.inputHandler].forEach((object) => object.update(deltaTime));
 
     // delete the Objects that are marked for deletion
     this.bricks = this.bricks.filter((brick) => !brick.markedForDeletion);
+  }
+
+  // reset the game
+  reset() {
+    location.reload();
   }
 
   //draws the game components
@@ -149,15 +154,13 @@ export default class Game {
     }
   }
 
-  // pausing / unpausing the game
+  // starting / pausing / unpausing the game
   togglePause() {
-    // if (this.gamestate === GAMESTATE.PAUSED) {
-    //   this.gamestate = GAMESTATE.RUNNING;
-    // } else {
-    //   this.gamestate = GAMESTATE.PAUSED;
-    // }
-
-    //Ternary operator
-    this.gamestate === GAMESTATE.PAUSED ? (this.gamestate = GAMESTATE.RUNNING) : (this.gamestate = GAMESTATE.PAUSED);
+    if (this.gamestate === GAMESTATE.MENU) {
+      this.start();
+    } else {
+      //Ternary operator
+      this.gamestate === GAMESTATE.PAUSED ? (this.gamestate = GAMESTATE.RUNNING) : (this.gamestate = GAMESTATE.PAUSED);
+    }
   }
 }
