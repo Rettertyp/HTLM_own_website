@@ -26,7 +26,7 @@ export default class Ball {
   // resets the ball to the middle after touching the ground
   reset() {
     this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
-    this.speed = { x: Math.abs(this.speed.x), y: -Math.abs(this.speed.y) };
+    this.speed = { x: Math.abs(this.speed.x) * getRandomVorzeichen(), y: -Math.abs(this.speed.y) };
   }
 
   // speeds up the ball, depending on what level the game is actually in
@@ -71,4 +71,15 @@ export default class Ball {
       this.position.y = this.game.paddle.position.y - this.size;
     }
   }
+}
+
+function getRandomVorzeichen() {
+  const number = Math.random();
+  let res;
+  if (number < 0.5) {
+    res = -1;
+  } else {
+    res = 1;
+  }
+  return res;
 }
