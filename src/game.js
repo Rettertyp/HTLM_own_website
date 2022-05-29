@@ -56,7 +56,7 @@ export default class Game {
   start() {
     // imediately quit, if we're not in the menu or trying to load a new level
     if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
-
+    
     // create a new array named "bricks"
     this.bricks = buildLevel(this, this.levels[this.actualLevel.current]);
 
@@ -77,6 +77,9 @@ export default class Game {
       this.gamestate = GAMESTATE.GAMEOVER;
     }
 
+    // updating the input and reacting accordingly
+    this.inputHandler.update();
+
     // checking whether the game is paused, in menu or over or not
     // if so, dont do anything until it is in the "running"-state
     if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
@@ -92,7 +95,7 @@ export default class Game {
 
     // merging the gameObject-array and the bricks into an array
     // using the update function for each of the elements of the merged array
-    [...this.gameObjects, ...this.bricks, this.inputHandler].forEach((object) => object.update(deltaTime));
+    [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
 
     // delete the Objects that are marked for deletion
     this.bricks = this.bricks.filter((brick) => !brick.markedForDeletion);
@@ -135,7 +138,7 @@ export default class Game {
       ctx.font = "30px Arial";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
-      ctx.fillText("Welcome to Brick Breaker! Press space to start", this.gameWidth / 2, this.gameHeight / 2);
+      ctx.fillText("Welcome to Brick Breaker! Press Start/Pause to start", this.gameWidth / 2, this.gameHeight / 2);
       return;
     }
 
@@ -150,7 +153,7 @@ export default class Game {
       ctx.font = "30px Arial";
       ctx.fillStyle = "red";
       ctx.textAlign = "center";
-      ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
+      ctx.fillText("GAME OVER!\npress reset to restart", this.gameWidth / 2, this.gameHeight / 2);
     }
   }
 
@@ -160,7 +163,8 @@ export default class Game {
       this.start();
     } else {
       //Ternary operator
-      this.gamestate === GAMESTATE.PAUSED ? (this.gamestate = GAMESTATE.RUNNING) : (this.gamestate = GAMESTATE.PAUSED);
+      //this.gamestate === GAMESTATE.PAUSED ? (this.gamestate = GAMESTATE.RUNNING) : (this.gamestate = GAMESTATE.PAUSED);
+      this.gamestate = this.gamestate === GAMESTATE.PAUSED ? GAMESTATE.RUNNING : GAMESTATE.PAUSED;
     }
   }
 }

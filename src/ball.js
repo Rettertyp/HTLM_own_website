@@ -26,9 +26,7 @@ export default class Ball {
   // resets the ball to the middle after touching the ground
   reset() {
     this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
-    console.log("old velocity: " + this.speed.x + ", " + this.speed.y);
     this.speed = { x: Math.abs(this.speed.x), y: -Math.abs(this.speed.y) };
-    console.log("ball reset with velocity: " + this.speed.x + ", " + this.speed.y);
   }
 
   // speeds up the ball, depending on what level the game is actually in
