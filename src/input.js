@@ -15,7 +15,6 @@ export default class InputHandler {
 
   // fetch all inputs from the gamepad and react to them
   update(deltaTime) {
-    const date = new Date();
 
     // return when the gamepad isn't connected (yet)
     if (!this.gamepad) {
