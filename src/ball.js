@@ -31,8 +31,8 @@ export default class Ball {
 
   // speeds up the ball, depending on what level the game is actually in
   increaseSpeed() {
-    this.speed.x += 20;
-    this.speed.y += 20;
+    this.speed.x += this.speed.x < 0 ? -20 : 20;
+    this.speed.y += this.speed.y < 0 ? -20 : 20;
   }
 
   // draw the image to the screen
