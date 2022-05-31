@@ -108,6 +108,7 @@ export default class InputHandler {
         // when the reload button has been constantly pressed for more than 3 seconds, reset the game
       } else if (date.getTime() - this.reloadButtonFirstPressed >= 3000) {
         this.game.reset();
+        this.reloadButtonWasPressed = false;
       }
     } else {
       this.reloadButtonWasPressed = false;
