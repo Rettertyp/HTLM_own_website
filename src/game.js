@@ -112,59 +112,61 @@ export default class Game {
     // using the draw function for each of the elements of the gameObjects array
     [...this.gameObjects, ...this.bricks].forEach((object) => object.draw(ctx));
 
-    // the pause state => nothing gets changed, screen is darker and says "Paused"
-    if (this.gamestate === GAMESTATE.PAUSED) {
-      // get the screen a little darker by drawing a rectangle that covers the whole screen
-      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      // fill it with black, but with a 50% opacity
-      ctx.fillStyle = "rgba(0,0,0,0.5)";
-      ctx.fill();
+    switch (this.gamestate) {
+      // the pause state => nothing gets changed, screen is darker and says "Paused"
+      case GAMESTATE.PAUSED:
+        // get the screen a little darker by drawing a rectangle that covers the whole screen
+        ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+        // fill it with black, but with a 50% opacity
+        ctx.fillStyle = "rgba(0,0,0,0.5)";
+        ctx.fill();
 
-      // print a "pause"-Text at the center of the screen
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.fillText("Paused", this.gameWidth / 2, this.gameHeight / 2);
-      return;
-    }
+        // print a "pause"-Text at the center of the screen
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText("Paused", this.gameWidth / 2, this.gameHeight / 2);
+        break;
 
-    if (this.gamestate === GAMESTATE.MENU) {
-      // get the screen black by drawing a rectangle that covers the whole screen
-      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      // fill it with black
-      ctx.fillStyle = "rgba(0,0,0,1)";
-      ctx.fill();
+      case GAMESTATE.MENU:
+        // get the screen black by drawing a rectangle that covers the whole screen
+        ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+        // fill it with black
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fill();
 
-      // print a "how to start"-Text at the center of the screen
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.fillText("Welcome to Brick Breaker! Press Start/Pause to start", this.gameWidth / 2, this.gameHeight / 2);
-      return;
+        // print a "how to start"-Text at the center of the screen
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText("Welcome to Brick Breaker! Press Start/Pause to start", this.gameWidth / 2, this.gameHeight / 2);
+        break;
+
+      case GAMESTATE.GAMEOVER:
+        // get the screen black by drawing a rectangle that covers the whole screen
+        ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+        // fill it with black
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fill();
+
+        // print a "GAME OVER"-Text at the center of the screen
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "red";
+        ctx.textAlign = "center";
+        ctx.fillText("GAME OVER!", this.gameWidth / 2, this.gameHeight / 2);
+
+        // print the level the player was on
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(
+          `You were on level ${this.gameStatus.level} and scored ${this.gameStatus.score} points.`,
+          this.gameWidth / 2,
+          this.gameHeight / 2 + 30
+        );
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
-      // get the screen black by drawing a rectangle that covers the whole screen
-      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      // fill it with black
-      ctx.fillStyle = "rgba(0,0,0,1)";
-      ctx.fill();
-
-      // print a "GAME OVER"-Text at the center of the screen
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "red";
-      ctx.textAlign = "center";
-      ctx.fillText("GAME OVER!", this.gameWidth / 2, this.gameHeight / 2);
-
-      // print the level the player was on
-      ctx.font = "20px Arial";
-      ctx.fillStyle = "white";
-      ctx.textAlign = "center";
-      ctx.fillText(
-        `You were on level ${this.gameStatus.level} and scored ${this.gameStatus.score} points.`,
-        this.gameWidth / 2,
-        this.gameHeight / 2 + 30
-      );
     }
   }
 
