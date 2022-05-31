@@ -4,8 +4,7 @@ import InputHandler from "./input.js";
 import Ball from "./ball.js";
 import Brick from "./brick.js";
 import { buildLevel, levels } from "./levels.js";
-import Lives from "./lives.js";
-import ActualLevel from "./actualLevel.js";
+import GameStatus from "./gameStatus.js";
 
 const GAMESTATE = {
   PAUSED: 0,
@@ -40,13 +39,11 @@ export default class Game {
     // create empty gameObjects-Array so that the draw funkction can still run before the game starts
     this.gameObjects = [];
 
-    // the lives, that the player has left
-    this.lives = new Lives(this);
+    // the gameStatus object that tracks the status and prints the HUD
+    this.gameStatus = new GameStatus(this);
 
     // an array of the levels
     this.levels = levels;
-    // the level the player is currently at (the entry of the levels-array)
-    this.actualLevel = new ActualLevel();
 
     // instanciate the inputHandler
     this.inputHandler = new InputHandler(this);
@@ -56,7 +53,7 @@ export default class Game {
   start() {
     // imediately quit, if we're not in the menu or trying to load a new level
     if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
-    
+
     // create a new array named "bricks"
     this.bricks = buildLevel(this);
 
@@ -65,7 +62,7 @@ export default class Game {
 
     // array of the game Objects
     // ...bricks adds the array bricks to the array gameObjects
-    this.gameObjects = [this.ball, this.paddle, this.lives, this.actualLevel];
+    this.gameObjects = [this.ball, this.paddle, this.gameStatus];
 
     this.gamestate = GAMESTATE.RUNNING;
   }
@@ -73,7 +70,7 @@ export default class Game {
   // updates the game components
   update(deltaTime) {
     // in case the player has no lives left, the game is set to over
-    if (this.lives.isDead()) {
+    if (this.gameStatus.isDead()) {
       this.gamestate = GAMESTATE.GAMEOVER;
     }
 
@@ -86,8 +83,7 @@ export default class Game {
 
     // if there are no bricks left, the level is complete and the next level will be loaded
     if (this.bricks.length === 0) {
-      this.actualLevel.nextLevel();
-      this.ball.increaseSpeed();
+      this.gameStatus.nextLevel();
       this.paddle.increaseSpeed();
       this.gamestate = GAMESTATE.NEWLEVEL;
       this.start();
@@ -96,6 +92,11 @@ export default class Game {
     // merging the gameObject-array and the bricks into an array
     // using the update function for each of the elements of the merged array
     [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
+
+    // increment the score for each brick that is destroyed
+    this.bricks.forEach((brick) => {
+      if (brick.markedForDeletion) this.gameStatus.incrementScore();
+    });
 
     // delete the Objects that are marked for deletion
     this.bricks = this.bricks.filter((brick) => !brick.markedForDeletion);
@@ -153,7 +154,17 @@ export default class Game {
       ctx.font = "30px Arial";
       ctx.fillStyle = "red";
       ctx.textAlign = "center";
-      ctx.fillText("GAME OVER!\npress reset to restart", this.gameWidth / 2, this.gameHeight / 2);
+      ctx.fillText("GAME OVER!", this.gameWidth / 2, this.gameHeight / 2);
+
+      // print the level the player was on
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText(
+        `You were on level ${this.gameStatus.level} and scored ${this.gameStatus.score} points.`,
+        this.gameWidth / 2,
+        this.gameHeight / 2 + 30
+      );
     }
   }
 

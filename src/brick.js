@@ -28,7 +28,8 @@ export default class Brick {
       this.game.ball.speed.y = -this.game.ball.speed.y;
       // set the flag that deletes the brick in the next update
       this.markedForDeletion = true;
-    } else if (detectHorizontalCollision(this.game.ball, this)) {
+    }
+    if (detectHorizontalCollision(this.game.ball, this)) {
       // make the ball bounce of vertically
       this.game.ball.speed.x = -this.game.ball.speed.x;
       // set the flag that deletes the brick in the next update

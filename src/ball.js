@@ -1,6 +1,8 @@
 // import the "detectCollision"-function
 import { detectVerticalCollision, detectHorizontalCollision } from "./collisionDetection.js";
 
+const spinFactor = 5;
+
 export default class Ball {
   constructor(game) {
     // import the image of the ball
@@ -26,13 +28,19 @@ export default class Ball {
   // resets the ball to the middle after touching the ground
   reset() {
     this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
-    this.speed = { x: Math.abs(this.speed.x) * getRandomVorzeichen(), y: -Math.abs(this.speed.y) };
+    this.speed = { x: (70 + (this.game.gameStatus.level - 1) * 20) * getRandomVorzeichen(), y: -(70 + (this.game.gameStatus.level - 1) * 20) };
   }
 
-  // speeds up the ball, depending on what level the game is actually in
-  increaseSpeed() {
-    this.speed.x += this.speed.x < 0 ? -20 : 20;
-    this.speed.y += this.speed.y < 0 ? -20 : 20;
+  spinOnBounce() {
+    if (this.game.paddle.speed > 0) {
+      if (this.speed.x > 0) this.speed.y = this.speed.y > 0 ? this.speed.y - spinFactor : this.speed.y + spinFactor;
+      else this.speed.y = this.speed.y > 0 ? this.speed.y + spinFactor : this.speed.y - spinFactor;
+      this.speed.x += 10;
+    } else if (this.game.paddle.speed < 0) {
+      if (this.speed.x < 0) this.speed.y = this.speed.y > 0 ? this.speed.y - spinFactor : this.speed.y + spinFactor;
+      else this.speed.y = this.speed.y > 0 ? this.speed.y + spinFactor : this.speed.y - spinFactor;
+      this.speed.x -= 10;
+    }
   }
 
   // draw the image to the screen
@@ -59,16 +67,19 @@ export default class Ball {
 
     // if it touches the floor of the game, we lower the lives by one
     if (this.position.y > this.gameHeight - this.size) {
-      this.game.lives.loseLife();
+      this.game.gameStatus.loseLife();
       this.reset();
     }
 
     if (detectHorizontalCollision(this, this.game.paddle)) {
       this.speed.x = -this.speed.x;
-      // this.position.x = this.game.paddle.position.x - this.size;
-    } else if (detectVerticalCollision(this, this.game.paddle)) {
+      this.game.gameStatus.nextStreak();
+    }
+    if (detectVerticalCollision(this, this.game.paddle)) {
       this.speed.y = -this.speed.y;
       this.position.y = this.game.paddle.position.y - this.size;
+      this.game.gameStatus.nextStreak();
+      this.spinOnBounce();
     }
   }
 }

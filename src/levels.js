@@ -4,7 +4,7 @@ export function buildLevel(game) {
   // instanciate an empty array of bricks
   let bricks = [];
 
-  const level = game.levels[game.actualLevel.current];
+  const level = game.levels[game.gameStatus.level - 1];
 
   // go over each row to decide whether or not to put a brick there
   level.forEach((row, rowIndex) => {
@@ -14,14 +14,8 @@ export function buildLevel(game) {
       if (brick === 1) {
         // calculate the position of the brick
         const position = {
-          /*
-          x: 80 * brickIndex,
-          y: 20+ 24 * rowIndex
-          */
-          ///*
           x: game.dummyBrick.width * brickIndex,
           y: game.dummyBrick.height * (rowIndex + 3),
-          //*/
         };
         // insert the brick to the "bricks"-array
         bricks.push(new Brick(game, position));
@@ -41,39 +35,44 @@ export const levels = [
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-  ], [
+  ],
+  [
     // level 2
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-  ], [
+  ],
+  [
     // level 3
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 1, 1, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-  ], [
+  ],
+  [
     // level 4
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
     [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
-  ], [
+  ],
+  [
     // level 5
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
     [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
     [1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
     [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-  ], [
+  ],
+  [
     // level 6
     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
-  ]
-]
+  ],
+];

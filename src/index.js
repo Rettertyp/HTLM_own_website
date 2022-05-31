@@ -6,9 +6,10 @@ import Game from "./game.js";
 // gameScreen has been defined in the index.html
 const screenName = "gameScreen";
 //ctx = context
-const ctx = $(`#${screenName}`)[0].getContext("2d");
+let ctx = $(`#${screenName}`)[0].getContext("2d");
 // version without jQuery:
 // let ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 
 // consts that stores the proportions of the screen
 const GAME_WIDTH = 800;
@@ -26,6 +27,7 @@ let lastTime = 0;
 function gameLoop(timestamp) {
   // deltaTime is the time that has passed since the last update
   let deltaTime = timestamp - lastTime;
+  if (deltaTime === 0) deltaTime = 1;
   // save that we just updated the screen
   lastTime = timestamp;
 
