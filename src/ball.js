@@ -29,6 +29,7 @@ export default class Ball {
   reset() {
     this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
     this.speed = { x: (70 + (this.game.gameStatus.level - 1) * 20) * getRandomVorzeichen(), y: -(70 + (this.game.gameStatus.level - 1) * 20) };
+    this.game.gameStatus.nextStreak();
   }
 
   spinOnBounce() {
