@@ -1,3 +1,4 @@
+// object that handles input, has an update function
 export default class InputHandler {
   constructor(game) {
     // how far the arrow keys have to be pressed to be considered as pressed
