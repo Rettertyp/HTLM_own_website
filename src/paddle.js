@@ -37,6 +37,10 @@ export default class Paddle {
     this.speed = 0;
   }
 
+  reset() {
+    this.position.x = this.game.gameWidth / 2 - this.width / 2;
+  }
+
   // increases the speed of the paddle depending on the level
   increaseSpeed() {
     this.maxSpeed = this.maxSpeed + 30;

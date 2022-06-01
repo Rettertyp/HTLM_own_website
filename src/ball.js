@@ -1,5 +1,6 @@
 // import the "detectCollision"-function
 import { detectVerticalCollision, detectHorizontalCollision } from "./collisionDetection.js";
+import { GAMESTATE } from "./game.js";
 
 const spinFactor = 5;
 
@@ -27,7 +28,7 @@ export default class Ball {
 
   // resets the ball to the middle after touching the ground
   reset() {
-    this.position = { x: this.gameWidth / 2, y: this.gameHeight / 2 };
+    this.position = { x: this.gameWidth / 2, y: this.gameHeight - 100 };
     this.speed = { x: (70 + (this.game.gameStatus.level - 1) * 20) * getRandomVorzeichen(), y: -(70 + (this.game.gameStatus.level - 1) * 20) };
     this.game.gameStatus.nextStreak();
   }
@@ -69,6 +70,8 @@ export default class Ball {
     // if it touches the floor of the game, we lower the lives by one
     if (this.position.y > this.gameHeight - this.size) {
       this.game.gameStatus.loseLife();
+      this.game.gamestate = GAMESTATE.LOSTLIFE;
+      this.game.paddle.reset();
       this.reset();
     }
 

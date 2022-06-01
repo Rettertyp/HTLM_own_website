@@ -6,12 +6,13 @@ import Brick from "./brick.js";
 import { buildLevel, levels } from "./levels.js";
 import GameStatus from "./gameStatus.js";
 
-const GAMESTATE = {
+export const GAMESTATE = {
   PAUSED: 0,
   RUNNING: 1,
   MENU: 2,
   GAMEOVER: 3,
   NEWLEVEL: 4,
+  LOSTLIFE: 5,
 };
 
 export default class Game {
@@ -47,10 +48,20 @@ export default class Game {
 
     // instanciate the inputHandler
     this.inputHandler = new InputHandler(this);
+
+    this.loadNextLevel();
   }
 
   // crates the level and starts the game
   start() {
+    // imediately quit, if we're not in the menu or trying to load a new level
+    if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL && this.gamestate !== GAMESTATE.LOSTLIFE) return;
+
+    this.gamestate = GAMESTATE.RUNNING;
+  }
+
+  // load the next level
+  loadNextLevel() {
     // imediately quit, if we're not in the menu or trying to load a new level
     if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.NEWLEVEL) return;
 
@@ -59,12 +70,11 @@ export default class Game {
 
     // set the ball to the inital position
     this.ball.reset();
+    this.paddle.reset();
 
     // array of the game Objects
     // ...bricks adds the array bricks to the array gameObjects
     this.gameObjects = [this.ball, this.paddle, this.gameStatus];
-
-    this.gamestate = GAMESTATE.RUNNING;
   }
 
   // updates the game components
@@ -79,14 +89,21 @@ export default class Game {
 
     // checking whether the game is paused, in menu or over or not
     // if so, dont do anything until it is in the "running"-state
-    if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
+    if (
+      this.gamestate === GAMESTATE.PAUSED ||
+      this.gamestate === GAMESTATE.MENU ||
+      this.gamestate === GAMESTATE.GAMEOVER ||
+      this.gamestate === GAMESTATE.NEWLEVEL ||
+      this.gamestate === GAMESTATE.LOSTLIFE
+    )
+      return;
 
     // if there are no bricks left, the level is complete and the next level will be loaded
     if (this.bricks.length === 0) {
       this.gameStatus.nextLevel();
       this.paddle.increaseSpeed();
       this.gamestate = GAMESTATE.NEWLEVEL;
-      this.start();
+      this.loadNextLevel();
     }
 
     // merging the gameObject-array and the bricks into an array
@@ -102,7 +119,7 @@ export default class Game {
     this.bricks = this.bricks.filter((brick) => !brick.markedForDeletion);
   }
 
-  // reset the game
+  // reset the game by reloading the page
   reset() {
     location.reload();
   }
@@ -164,9 +181,39 @@ export default class Game {
           this.gameWidth / 2,
           this.gameHeight / 2 + 30
         );
-    }
+        break;
 
-    if (this.gamestate === GAMESTATE.GAMEOVER) {
+      case GAMESTATE.NEWLEVEL:
+        // get the screen a little darker by drawing a rectangle that covers the whole screen
+        ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+        // fill it with black, but with a 50% opacity
+        ctx.fillStyle = "rgba(0,0,0,0.5)";
+        ctx.fill();
+
+        // print a prompt to start the new level
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(`Press Start/Pause to start level ${this.gameStatus.level}`, this.gameWidth / 2, this.gameHeight / 2);
+        break;
+
+      case GAMESTATE.LOSTLIFE:
+        // get the screen a little darker by drawing a rectangle that covers the whole screen
+        ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+        // fill it with black, but with a 50% opacity
+        ctx.fillStyle = "rgba(0,0,0,0.5)";
+        ctx.fill();
+
+        // print a prompt to start the new level
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(
+          `You have ${this.gameStatus.lives} live${this.gameStatus.lives > 1 ? "s" : ""} left. Press Start/Pause to continue.`,
+          this.gameWidth / 2,
+          this.gameHeight / 2
+        );
+        break;
     }
   }
 

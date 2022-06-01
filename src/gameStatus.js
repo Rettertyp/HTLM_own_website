@@ -9,8 +9,7 @@ export default class GameStatus {
     // score
     this.score = 0;
     this.streak = 0;
-    this.streakIndex = 0;
-    this.lastStreakIndex = 1;
+    this.onStreak = false;
 
     // coordinates where we want to draw items
     this.livesTextPosX = game.gameWidth - 40;
@@ -32,18 +31,18 @@ export default class GameStatus {
   }
 
   incrementScore() {
-    if (this.streakIndex === this.lastStreakIndex) {
+    if (this.onStreak) {
       this.streak++;
     } else {
       this.streak = 0;
     }
     this.score += this.streak + 1;
-    this.lastStreakIndex = this.streakIndex;
+    this.onStreak = true;
   }
 
   // gets called when the ball hits the paddle
   nextStreak() {
-    this.streakIndex += (this.streakIndex + 1) % 100;
+    this.onStreak = false;
   }
 
   // draws the HUD
