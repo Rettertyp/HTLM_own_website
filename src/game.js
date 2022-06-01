@@ -219,7 +219,7 @@ export default class Game {
 
   // starting / pausing / unpausing the game
   togglePause() {
-    if (this.gamestate === GAMESTATE.MENU) {
+    if (this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.NEWLEVEL || this.gamestate === GAMESTATE.LOSTLIFE) {
       this.start();
     } else {
       //Ternary operator
