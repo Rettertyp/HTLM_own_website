@@ -78,7 +78,7 @@ export default class Game {
   }
 
   // updates the game components
-  update(deltaTime) {
+  update(deltaFactor) {
     // in case the player has no lives left, the game is set to over
     if (this.gameStatus.isDead()) {
       this.gamestate = GAMESTATE.GAMEOVER;
@@ -108,7 +108,7 @@ export default class Game {
 
     // merging the gameObject-array and the bricks into an array
     // using the update function for each of the elements of the merged array
-    [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaTime));
+    [...this.gameObjects, ...this.bricks].forEach((object) => object.update(deltaFactor));
 
     // increment the score for each brick that is destroyed
     this.bricks.forEach((brick) => {

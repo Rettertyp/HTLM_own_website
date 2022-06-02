@@ -21,13 +21,16 @@ let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 // game loop
 
 // a variable that saves the last time the screen got updated
-let lastTime = 0;
+let lastTime;
 
 // the main loop, in which the game is regularly updated
 function gameLoop(timestamp) {
-  // deltaTime is the time that has passed since the last update
-  let deltaTime = timestamp - lastTime;
-  if (deltaTime === 0) deltaTime = 1;
+  if (lastTime === undefined) {
+    lastTime = timestamp;
+  }
+  // deltaFactor is the factor that objects should be moved times their speed
+  let deltaFactor = (timestamp - lastTime) * (1 / 256);
+  if (deltaFactor === 0) deltaFactor = 1 / 256;
   // save that we just updated the screen
   lastTime = timestamp;
 
@@ -35,7 +38,7 @@ function gameLoop(timestamp) {
   ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
   // update and draw the game
-  game.update(deltaTime);
+  game.update(deltaFactor);
   game.draw(ctx);
 
   // request a frame from the browser

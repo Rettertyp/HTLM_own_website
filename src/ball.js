@@ -52,10 +52,11 @@ export default class Ball {
   }
 
   // updates the position of the ball
-  update(deltaTime) {
+  update(deltaFactor) {
     // move the ball in the two directions
-    this.position.x += this.speed.x / deltaTime;
-    this.position.y += this.speed.y / deltaTime;
+    this.position.x += this.speed.x * deltaFactor;
+    this.position.y += this.speed.y * deltaFactor;
+    console.log(`${this.speed.x} ${this.speed.y}, ${deltaFactor}, ${this.speed.x * deltaFactor}, ${this.speed.y * deltaFactor}`);
 
     // if it touches the side walls of the game, it bounces of
     if (this.position.x > this.gameWidth - this.size || this.position.x < 0) {

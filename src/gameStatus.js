@@ -61,7 +61,7 @@ export default class GameStatus {
   }
 
   // does nothing since it doesnt need to update, but has to exist since its a gameObject
-  update(deltaTime) {
+  update(deltaFactor) {
     return;
   }
 }

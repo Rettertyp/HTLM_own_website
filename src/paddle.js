@@ -53,8 +53,8 @@ export default class Paddle {
   }
 
   // updated the position of the paddle depending on the delta time
-  update(deltaTime) {
-    this.position.x += this.speed / deltaTime;
+  update(deltaFactor) {
+    this.position.x += this.speed * deltaFactor;
 
     // avoid getting of the screen by setting it to the left corner when leaving
     if (this.position.x < 0) {
