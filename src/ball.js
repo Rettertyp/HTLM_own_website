@@ -7,7 +7,7 @@ const spinFactor = 5;
 export default class Ball {
   constructor(game) {
     // import the image of the ball
-    this.image = $("#img_ball")[0];
+    this.image = document.getElementById("img_ball");
 
     // proportions of the game screen
     this.gameWidth = game.gameWidth;
@@ -66,6 +66,8 @@ export default class Ball {
     // if it touches the top wall of the game, it bounces of
     if (this.position.y < 0) {
       this.speed.y = -this.speed.y;
+      // preventing the ball from getting stuck in the ceiling
+      this.position.y = 0;
     }
 
     // if it touches the floor of the game, we lower the lives by one
@@ -78,6 +80,9 @@ export default class Ball {
 
     if (detectHorizontalCollision(this, this.game.paddle)) {
       this.speed.x = -this.speed.x;
+      // preventing the ball from getting stuck in the walls
+      if (this.position.x < 0) this.position.x = 0;
+      else if (this.position.x > this.gameWidth - this.size) this.position.x = this.gameWidth - this.size;
       this.game.gameStatus.nextStreak();
     }
     if (detectVerticalCollision(this, this.game.paddle)) {

@@ -6,9 +6,8 @@ import Game from "./game.js";
 // gameScreen has been defined in the index.html
 const screenName = "gameScreen";
 //ctx = context
-let ctx = $(`#${screenName}`)[0].getContext("2d");
-// version without jQuery:
-// let ctx = canvas.getContext("2d");
+const canvas = document.getElementById(screenName);
+let ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
 // consts that stores the proportions of the screen
